@@ -1,0 +1,43 @@
+{
+  "name": "openskie",
+  "version": "1.0.0",
+  "description": "continuing education tracker for teachers and childcare workers",
+  "main": "index.js",
+  "bin": {
+    "openskie": "bin/cmd.js"
+  },
+  "scripts": {
+    "start": "bin/cmd.js",
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/openskie/openskie.git"
+  },
+  "keywords": [
+    "continuing",
+    "education",
+    "app",
+    "teachers"
+  ],
+  "bugs": {
+    "url": "https://github.com/openskie/openskie/issues"
+  },
+  "homepage": "https://github.com/openskie/openskie#readme",
+  "dependencies": {
+    "body": "^5.1.0",
+    "ecstatic": "^1.0.0",
+    "hyperstream": "^1.2.2",
+    "inherits": "^2.0.1",
+    "is-root": "^1.0.0",
+    "main-loop": "^3.2.0",
+    "minimist": "^1.2.0",
+    "mysql": "^2.9.0",
+    "routes": "^2.1.0",
+    "sqlite3": "^3.1.0",
+    "tcp-bind": "^1.2.0",
+    "virtual-dom": "^2.1.1",
+    "websocket-stream": "^2.0.2",
+    "xtend": "^4.0.0"
+  }
+}
