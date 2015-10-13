@@ -1,10 +1,10 @@
 {
-  "name": "openskie",
+  "name": "tuitionpool",
   "version": "1.0.0",
-  "description": "continuing education tracker for teachers and childcare workers",
+  "description": "tuition pool",
   "main": "index.js",
   "bin": {
-    "openskie": "bin/cmd.js"
+    "tuitionpool": "bin/cmd.js"
   },
   "scripts": {
     "start": "bin/cmd.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/openskie/openskie.git"
+    "url": "git://github.com/bloodyKnuckles/tuitionpool.git"
   },
   "keywords": [
     "continuing",
@@ -21,9 +21,9 @@
     "teachers"
   ],
   "bugs": {
-    "url": "https://github.com/openskie/openskie/issues"
+    "url": "https://github.com/bloodyKnuckles/tuitionpool/issues"
   },
-  "homepage": "https://github.com/openskie/openskie#readme",
+  "homepage": "https://github.com/bloodyKnuckles/tuitionpool#readme",
   "dependencies": {
     "body": "^5.1.0",
     "ecstatic": "^1.0.0",
