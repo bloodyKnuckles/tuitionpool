@@ -23,8 +23,8 @@ Server.prototype.handle = function (req, res) {
   var mx = xtend(m, { state: { url: req.url } })
   if (m && (r = m.fn(mx))) {
       read('layout.html').pipe(hyperstream({
-        '#content': r
-        //'#content': createElement(r).toString()
+        //'#content': r
+        '#content': createElement(r).toString()
         //'#content': read('section.html').pipe(hyperstream({
         //  '#section': 'yup'
         //}))
