@@ -1,0 +1,31 @@
+var Routes = require('routes')
+var router = Routes()
+var fs = require('fs')
+var path = require('path')
+//var hyperstream = require('hyperstream')
+var vh = require('virtual-html')
+//var createElement = require('virtual-dom/create-element')
+//var plates = require('plates')
+module.exports = router
+
+var h = require('virtual-dom/h')
+
+router.addRoute('/', function (m) {
+  //return createElement(h('h1', 'tuition pool')).toString()
+  return { 'section': 'home.html', 'content': h('h1', 'tuition pool') }
+})
+
+router.addRoute('/section/:pg', function (m) {
+    var html = fs.readFileSync(path.join(__dirname, '../public/section.html'), 'utf-8');
+    //return plates.bind(html, {'section': m.params.pg, 'other': 'otherstuff'})
+    return { 'section': 'section.html', 'content': vh(html) }
+
+//  return read('section.html').pipe(hyperstream({
+//    '#section': m.params.pg
+//  }))
+})
+
+function read (file) {
+  return fs.createReadStream(path.join(__dirname, '../public', file))
+}
+
