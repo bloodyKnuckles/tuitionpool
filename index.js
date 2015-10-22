@@ -22,8 +22,8 @@ Server.prototype.handle = function (req, res) {
   var r, m = router.match(req.url)
   var mx = xtend(m, { state: { url: req.url } })
   if (m && (r = m.fn(mx))) {
-      lsections(r.sections)
-      .pipe(hstream(r.pgvars))
+      ltemplates(r.templates)
+      .pipe(hstream(procpgvars(r.pgvars)))
       .pipe(res)
   } else this.st(req, res)
 }
@@ -32,11 +32,22 @@ Server.prototype.createStream = function () {
   // websocket feed goes here
 }
 
-function lsections (sections) {
-    var start = sections.reverse().shift()
-    return sections.reduce(function(prev, next) {
-        return read(next).pipe(hstream({'.section': prev}))
-    }, read(start))
+function ltemplates (templates) {
+    var start = templates.reverse().shift()
+    return templates.reduce(function(prev, next) {
+        return vdorfile(next).pipe(hstream({'.template': prev}))
+    }, vdorfile(start))
+}
+
+function procpgvars (pgvars) {
+    Object.keys(pgvars).forEach(function (key) {
+        pgvars[key] = 'string' === typeof pgvars[key]? pgvars[key]: createElement(pgvars[key]).toString()
+    })
+    return pgvars
+}
+
+function vdorfile (template) {
+    return 'string' === typeof template? read(template): createElement(template).toString()
 }
 
 function read (file) {
