@@ -8,6 +8,8 @@ var fs = require('fs')
 var hstream = require('hyperstream')
 var xtend = require('xtend')
 var createElement = require('virtual-dom/create-element')
+var db = require('./lib/db.js')
+var str = require('string-to-stream')
 
 inherits(Server, EventEmitter)
 module.exports = Server
@@ -32,6 +34,10 @@ Server.prototype.createStream = function () {
   // websocket feed goes here
 }
 
+Server.prototype.setup = function (cb) {
+  db.setup(cb)
+}
+  
 function ltemplates (templates) {
     var start = templates.reverse().shift()
     return templates.reduce(function(prev, next) {
@@ -40,6 +46,7 @@ function ltemplates (templates) {
 }
 
 function procpgvars (pgvars) {
+    pgvars = pgvars || {}
     Object.keys(pgvars).forEach(function (key) {
         pgvars[key] = 'string' === typeof pgvars[key]? pgvars[key]: createElement(pgvars[key]).toString()
     })
@@ -47,7 +54,7 @@ function procpgvars (pgvars) {
 }
 
 function vdorfile (template) {
-    return 'string' === typeof template? read(template): createElement(template).toString()
+    return 'string' === typeof template? read(template): str(createElement(template).toString())
 }
 
 function read (file) {
