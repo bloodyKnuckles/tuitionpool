@@ -7,6 +7,13 @@ var argv = minimist(process.argv.slice(2), {
   default: { port: isroot() ? 80 : 8000 }
 })
 
+if (argv._[0] === 'init') {
+  var createApp = require('../')
+  var app = createApp()
+  app.setup()
+  return
+}
+
 var alloc = require('tcp-bind')
 var fd = alloc(argv.port)
 
