@@ -1,5 +1,10 @@
-create table pools (
+create table requests (
   pool text,
-  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+  email text,
+  date_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+create table pools (
+  pool text,
+  date_time DATETIME DEFAULT CURRENT_TIMESTAMP
+); 
