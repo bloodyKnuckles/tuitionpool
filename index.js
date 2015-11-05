@@ -38,15 +38,16 @@ function Server (opts) {
 Server.prototype.handle = function (req, res) {
     var r, m = router.match(req.url)
     var mx = xtend(m, { state: { url: req.url } })
-    if ( 'POST' === req.method ) {
+    if ( m && 'POST' === req.method ) {
         body(req, res, function (err, pvars) {
             mx = xtend(mx, { params: xtend(mx.params, pvars) })
-            r = m.fn(mx)
-            templates(r.templates, r.pgvars)
+            r = m.fn(mx, res)
+            //templates(r.templates, r.pgvars)
         })
     }
-    else if (m && (r = m.fn(mx))) {
-        templates(r.templates, r.pgvars)
+    else if (m) { // && (r = m.fn(mx, res))) {
+        r = m.fn(mx, res)
+        //templates(r.templates, r.pgvars)
     } else this.st(req, res)
 
     function templates (templates, pgvars) {
@@ -66,6 +67,7 @@ Server.prototype.setup = function (cb) {
   
 function ltemplates (templates) {
     var start = templates.reverse().shift()
+
     return templates.reduce(function(prev, next) {
         return vdorfile(next).pipe(hstream({'.template': prev}))
     }, vdorfile(start))
