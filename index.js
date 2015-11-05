@@ -9,7 +9,6 @@ var fs = require('fs')
 var hstream = require('hyperstream')
 var xtend = require('xtend')
 var createElement = require('virtual-dom/create-element')
-var db = require('./lib/db.js')
 //var mysql = require('mysql')
 var str = require('string-to-stream')
 
@@ -42,19 +41,11 @@ Server.prototype.handle = function (req, res) {
         body(req, res, function (err, pvars) {
             mx = xtend(mx, { params: xtend(mx.params, pvars) })
             r = m.fn(mx, res)
-            //templates(r.templates, r.pgvars)
         })
     }
-    else if (m) { // && (r = m.fn(mx, res))) {
+    else if (m) {
         r = m.fn(mx, res)
-        //templates(r.templates, r.pgvars)
     } else this.st(req, res)
-
-    function templates (templates, pgvars) {
-        ltemplates(templates)
-        .pipe(hstream(procpgvars(pgvars)))
-        .pipe(res)
-    }
 }
 
 Server.prototype.createStream = function () {
@@ -62,30 +53,10 @@ Server.prototype.createStream = function () {
 }
 
 Server.prototype.setup = function (cb) {
-    db.setup(cb)
+    //db.setup(cb)
 }
   
-function ltemplates (templates) {
-    var start = templates.reverse().shift()
-
-    return templates.reduce(function(prev, next) {
-        return vdorfile(next).pipe(hstream({'.template': prev}))
-    }, vdorfile(start))
-}
-
-function procpgvars (pgvars) {
-    pgvars = pgvars || {}
-    Object.keys(pgvars).forEach(function (key) {
-        pgvars[key] = 'string' === typeof pgvars[key]? pgvars[key]: createElement(pgvars[key]).toString()
-    })
-    return pgvars
-}
-
-function vdorfile (template) {
-    return 'string' === typeof template? read(template): str(createElement(template).toString())
-}
-
-function read (file) {
-    return fs.createReadStream(path.join(__dirname, 'public', file))
-}
+//function read (file) {
+//    return fs.createReadStream(path.join(__dirname, 'public', file))
+//}
 
