@@ -1,4 +1,4 @@
-<style type="text/css">
+<style>
 .form-style-5{
     max-width: 500px;
     padding: 10px 20px;
@@ -104,6 +104,7 @@ h2 {
 <div class="form-style-5">
 
   <h2>Tuition Pool Request</h2>
+  <h3 id="poolname">Pool Name</h3>
 
   <div>
 The following requirements ensure all SEK Professional Staff members have an equal chance obtaining tuition assistance:
@@ -113,7 +114,7 @@ The following requirements ensure all SEK Professional Staff members have an equ
     </ul>
   </div>
 
-<form name="request" method="post" action="/123450/post">
+<form name="request" method="post" action="">
   <input type="hidden" name="botblock" value="" />
   <fieldset>
   <legend><span class="number">1</span> Employee Info</legend>
@@ -122,9 +123,9 @@ The following requirements ensure all SEK Professional Staff members have an equ
   <div class="radiogroup">
     Is your current license Provisional?
     <label for="provyes" class="radio">Yes</label>
-    <input type="radio" value="None" id="provyes" name="provisional" />
+    <input type="radio" value="1" id="provyes" name="provisional" />
     <label for="provno" class="radio">No</label>
-    <input type="radio" value="None" id="provno" name="provisional" />
+    <input type="radio" value="0" id="provno" name="provisional" />
   </div>
   </fieldset>
 
@@ -142,16 +143,16 @@ The following requirements ensure all SEK Professional Staff members have an equ
   <div class="radiogroup">
     Course type:
     <label for="coursetypetrad" class="radio">Traditional</label>
-    <input type="radio" value="None" id="coursetypetrad" name="coursetype" />
+    <input type="radio" value="traditional" id="coursetypetrad" name="coursetype" />
     <label for="coursetypeon" class="radio">Online</label>
-    <input type="radio" value="None" id="coursetypeon" name="coursetype" />
+    <input type="radio" value="online" id="coursetypeon" name="coursetype" />
   </div>
   <div class="radiogroup">
     Is this course part of a degree seeking program?
     <label for="coursedegreeyes" class="radio">Yes</label>
-    <input type="radio" value="None" id="coursedegreeyes" name="coursedegree" />
+    <input type="radio" value="1" id="coursedegreeyes" name="coursedegree" />
     <label for="coursedegreeno" class="radio">No</label>
-    <input type="radio" value="None" id="coursedegreeno" name="coursedegree" />
+    <input type="radio" value="0" id="coursedegreeno" name="coursedegree" />
   </div>
 
   </fieldset>
@@ -174,12 +175,13 @@ Employees are eligible for up to six hours of tuition assistance per year.
 </ul>
 </p>
 </div>
+<div class="hideme" id="pool">pool</div>
 
 <script>
 var requestform = document.forms.request
+requestform.action = document.getElementById('pool').innerText + '/post'
 requestform.botblock.value = 'imbotblocked'
 requestform.addEventListener('submit', function(evt){
-    evt.preventDefault()
     var pass = true, elems = ['name', 'email', 'coursenumber', 'coursename', 'universityname'],
       radiobuttons = ['provisional', 'coursetype', 'coursedegree']
     elems.forEach(function (item) {
@@ -202,9 +204,9 @@ requestform.addEventListener('submit', function(evt){
       }
     })
     if ( !pass ) {
-      //alert('Please complete all fields.')
+      alert('Please complete all fields.')
       return false
     }
-    return false
+    return true
 })
 </script>
