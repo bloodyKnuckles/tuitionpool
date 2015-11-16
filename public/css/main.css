@@ -1,0 +1,25 @@
+body {
+    font-family: Sans-Serif;
+}
+
+table {
+    margin-top: 1em;
+}
+
+.centerbox {
+    max-width: 700px;
+    margin: auto;
+}
+.hideme {
+    display: none;
+}
+
+.dimme {
+    color: #666666;
+}
+
+#help {
+    font-size: .75em;
+    color: #666666;
+    margin-top: 2em;
+}

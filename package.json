@@ -7,7 +7,7 @@
     "tuitionpool": "bin/cmd.js"
   },
   "scripts": {
-    "start": "bin/cmd.js",
+    "start": "browserify-directory lib/js/ public/js/ & bin/cmd.js",
     "test": "tape test/*.js"
   },
   "repository": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "body": "^5.1.0",
     "ecstatic": "^1.0.0",
-    "hyperstream": "^1.2.2",
+    "hyperstream": "git+https://github.com/bloodyKnuckles/hyperstream.git",
     "inherits": "^2.0.1",
     "is-root": "^1.0.0",
     "main-loop": "^3.2.0",

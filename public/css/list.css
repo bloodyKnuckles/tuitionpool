@@ -1,0 +1,8 @@
+.aftercolumn {
+    font-size: .85em;
+    padding-left: 1em;
+}
+
+.list tr:hover {
+    background-color: #FAFAD2;
+}

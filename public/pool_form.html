@@ -1,0 +1,29 @@
+<div class="form-style-5">
+
+  <h2>Tuition Pool</h2>
+
+<form name="pool" method="post" action="#">
+    <input type="hidden" name="botblock" value="" />
+    <div id="formfields">
+        <fieldset>
+            <legend><span class="number"></span> Pool Info</legend>
+            <input id="poolname" type="text" name="poolname" placeholder="Pool name">
+            <input id="datetime_start" type="text" name="datetime_start" placeholder="Date start">
+            <input id="datetime_end" type="text" name="datetime_end" placeholder="Date end">
+        </fieldset>
+    </div>
+
+    <input type="submit" value="Save" />
+</form>
+
+</div>
+<div class="hideme" id="pool">pool</div>
+
+<script>
+var poolform = document.forms.pool
+poolform.action = '/pools/' + document.getElementById('pool').innerText + '/post'
+poolform.botblock.value = 'imbotblocked'
+//poolform.addEventListener('submit', function(evt){
+//    return true
+//})
+</script>
