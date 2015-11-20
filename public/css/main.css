@@ -6,6 +6,10 @@ table {
     margin-top: 1em;
 }
 
+.bottomspace {
+    margin-bottom: 1em;
+}
+
 .centerbox {
     max-width: 700px;
     margin: auto;

@@ -8,8 +8,12 @@
         <fieldset>
             <legend><span class="number"></span> Pool Info</legend>
             <input id="poolname" type="text" name="poolname" placeholder="Pool name">
-            <input id="datetime_start" type="text" name="datetime_start" placeholder="Date start">
-            <input id="datetime_end" type="text" name="datetime_end" placeholder="Date end">
+            <div>Start Date:</div>
+            <div id="datetime_start_cal" class="fill-white keyline-all pad1"></div>
+            <div>End Date:</div>
+            <div id="datetime_end_cal" class="fill-white keyline-all pad1"></div>
+            <input id="datetime_start" type="hidden" name="datetime_start">
+            <input id="datetime_end" type="hidden" name="datetime_end">
         </fieldset>
     </div>
 
@@ -18,4 +22,3 @@
 
 </div>
 <div class="hideme" id="pool">pool</div>
-
