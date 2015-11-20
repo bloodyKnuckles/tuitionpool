@@ -22,8 +22,31 @@ table {
     color: #666666;
 }
 
-#help {
+.help {
     font-size: .75em;
     color: #666666;
     margin-top: 2em;
 }
+
+.headerblock {
+    padding: 1em 0;
+}
+
+.headerblock:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+ 
+.headerwsub {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.headersub {
+    float: right;
+    display: inline-block;
+    font-size: .75em;
+}
+

@@ -6,3 +6,7 @@
 .list tr:hover {
     background-color: #FAFAD2;
 }
+
+.raligntext {
+    text-align: right;
+}
