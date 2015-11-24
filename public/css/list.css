@@ -7,6 +7,10 @@
     background-color: #FAFAD2;
 }
 
-.raligntext {
-    text-align: right;
+.list tr:hover .actions {
+    visibility: visible;
+}
+
+.actions {
+    visibility: hidden;
 }
