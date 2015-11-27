@@ -1,0 +1,12 @@
+#!/bin/bash
+
+files=$(find . -not -iwholename './node_modules/*' -name "*.js")
+for f in $files
+do
+    refname=$(sed -n "s/var \(..*\) = require(.$1.).*$/\1/p" $f)
+    if [ "$refname" ]
+        then
+            echo $f
+            cat -n $f | sed -n "/[[:<:]]$refname[[:>:]]/p"
+    fi
+done

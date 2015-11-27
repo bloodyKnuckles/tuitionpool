@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "browserify-directory lib/js/ public/js/ & bin/cmd.js",
-    "test": "tape test/*.js"
+    "test": "tape test/*.js",
+    "whereis": "./bin/findrequired"
   },
   "repository": {
     "type": "git",
@@ -45,5 +46,9 @@
     "virtual-html": "^1.3.0",
     "websocket-stream": "^2.0.2",
     "xtend": "^4.0.0"
+  },
+  "devDependencies": {
+    "tape": "^4.2.2",
+    "test": "^0.6.0"
   }
 }
