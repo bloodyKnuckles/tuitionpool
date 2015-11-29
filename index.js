@@ -18,18 +18,20 @@ function Server (opts) {
 }
 
 Server.prototype.handle = function (req, res) {
-    var r, m = router.match(req.url)
-    var mx = xtend(m, { state: { url: req.url } })
-    if ( m && 'POST' === req.method ) {
+    var result, rm = router.match(req.url)
+    var rmx = xtend(rm, { state: { url: req.url } })
+    if ( rm && 'POST' === req.method ) {
         body(req, res, function (err, pvars) {
-            mx = xtend(mx, { params: xtend(mx.params, pvars) })
-            r = m.fn(mx, res)
+            rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
+            result = rm.fn(rmx, res)
         })
     }
-    else if (m) {
-        r = m.fn(mx, res)
+    else if (rm) {
+        result = rm.fn(rmx, res)
     }
-    else this.st(req, res)
+    else {
+        this.st(req, res)
+    }
 }
 
 Server.prototype.createStream = function () {

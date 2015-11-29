@@ -14,3 +14,18 @@
 .actions {
     visibility: hidden;
 }
+
+.strikeme {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHklEQVQYV2NkIBIwEqmOgTYK64mxnjZWE2MzDXwNAIJ3AIqzndCYAAAAAElFTkSuQmCC');
+    background-repeat: repeat-x;
+    background-position: 50% 50%;
+/*
+    text-decoration: line-through;
+*/
+}
+
+.nostrike {
+    background-image: none;
+    /*text-decoration: none;*/
+}
+
