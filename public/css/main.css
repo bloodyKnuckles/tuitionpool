@@ -6,6 +6,10 @@ table {
     margin-top: 1em;
 }
 
+a {
+    text-decoration: none;
+}
+
 .bottomspace {
     margin-bottom: 1em;
 }
