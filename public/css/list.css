@@ -3,7 +3,7 @@
     padding-left: 1em;
 }
 
-.list tr:hover {
+.list tr.showme:hover {
     background-color: #FAFAD2;
 }
 
