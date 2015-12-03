@@ -4,9 +4,7 @@ var router = require('./lib/router.js')
 var ecstatic = require('ecstatic')
 var body = require('body/any')
 var path = require('path')
-var hstream = require('hyperstream')
 var xtend = require('xtend')
-var str = require('string-to-stream')
 
 inherits(Server, EventEmitter)
 module.exports = Server
