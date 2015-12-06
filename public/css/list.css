@@ -1,6 +1,17 @@
+tbody {
+    margin-bottom: .7em;
+}
+
+tbody:after {
+    content: '';
+    display: block;
+    height: .25em;
+}
+
 .aftercolumn {
     font-size: .85em;
     padding-left: 1em;
+    vertical-align: top;
 }
 
 .list tr.showme:hover {
