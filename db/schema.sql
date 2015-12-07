@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `tuitionpool`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `tuitionpool` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `tuitionpool`;
-
---
 -- Table structure for table `pools`
 --
 
@@ -35,6 +27,7 @@ CREATE TABLE `pools` (
   `poolname` text,
   `datetime_start` datetime DEFAULT NULL,
   `datetime_end` datetime DEFAULT NULL,
+  `active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`pooltoken`),
   UNIQUE KEY `pool` (`pooltoken`),
   UNIQUE KEY `pool_2` (`pooltoken`)
@@ -119,4 +112,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-03 12:19:26
+-- Dump completed on 2015-12-06 19:27:43
