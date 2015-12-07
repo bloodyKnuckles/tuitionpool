@@ -13,7 +13,7 @@
 <div class="dimme"><span id="pagetitle">Requests found:</span> (<span id="countrequests">0</span>)</div>
 <table id="listitems" class="list">
     <tbody class="rowinfo">
-        <tr class="clickme">
+        <tr class="showme clickme">
             <td class="name">Name Here</td>
             <td class="aftercolumn dimme email">Email here</td>
             <td class="aftercolumn dimme datetime_text">Thu Oct 01 2014</td>
@@ -38,7 +38,7 @@
         </tr>
     </tbody>
     <tbody class="rowinfo">
-        <tr class="clickme">
+        <tr class="showme clickme">
             <td class="name">Name Here</td>
             <td class="aftercolumn dimme email">Email here</td>
             <td class="aftercolumn dimme datetime_text">Thu Oct 01 2014</td>
@@ -64,7 +64,9 @@
     </tbody>
 </table>
 <div class="help raligntext">&#10004; = Provisional</div>
-<form id="actiondeleteform" class="hideme" method="post">
+<form id="actionform" class="hideme" method="post">
+    <input type="hidden" name="itemtype" value="request">
+    <input type="hidden" name="returnto" id="returnto">
     <input type="hidden" name="email">
     <input type="hidden" name="datetime">
 </form>

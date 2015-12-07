@@ -1,7 +1,3 @@
-tbody {
-    margin-bottom: .7em;
-}
-
 tbody:after {
     content: '';
     display: block;
