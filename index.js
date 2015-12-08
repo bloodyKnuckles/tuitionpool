@@ -1,3 +1,5 @@
+var url = require('url')
+var queryObject = require('urlquery-to-object')
 var inherits = require('inherits')
 var EventEmitter = require('events').EventEmitter
 var router = require('./lib/router.js')
@@ -16,8 +18,10 @@ function Server (opts) {
 }
 
 Server.prototype.handle = function (req, res) {
-    var result, rm = router.match(req.url)
-    var rmx = xtend(rm, { state: { url: req.url } })
+    var urlobj = url.parse(req.url),
+        queryobj = queryObject(urlobj.query),
+        result, rm = router.match(urlobj.pathname),
+        rmx = xtend(rm, { state: { url: req.url, query: queryobj || undefined } })
     if ( rm && 'POST' === req.method ) {
         body(req, res, function (err, pvars) {
             rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })

@@ -1,33 +1,43 @@
-<h3><span id="pagetitle">Pools found:</span> (<span id="countpools">0</span>)</h3>
-<table id="listpools" class="list">
-    <tbody class="rowpool">
-        <tr class="showme">
+<h3><span id="pagetitle">Pools found:</span> (<span id="countitems">0</span>)</h3>
+<table id="listitems" class="list">
+    <tbody class="rowinfo">
+        <tr class="showme clickme">
             <td><a class="poolname" href="/pools/123450">Pool Name Here</a></td>
             <td class="aftercolumn datetime_start">Thu Oct 01 2014</td>
             <td class="aftercolumn datetime_end">Thu Dec 24 2014</td>
-            <td class="aftercolumn">(<span class="requestscount">0</span>)</td>
+            <td class="aftercolumn">
+                <a class="showextra" href="#" title="Show request form link.">+</a>
+                (<span class="requestscount">0</span>)
+            </td>
             <td class="hideme pooltoken">pooltoken</td>
             <td class="help nostrike actioncell"><div class="actions"><a class="actiondelete" href="#">Delete</a></div></td>
         </tr>
-        <tr>
+        <tr class="hideme extrainfo">
             <td class="help" colspan="4"><a class="requestlink" href="#">Request link</a></td>
         </tr>
     </tbody>
-    <tbody class="rowpool">
-        <tr>
+    <tbody class="rowinfo">
+        <tr class="showme clickme">
             <td><a class="poolname" href="/pools/123450">Pool Name Here</a></td>
             <td class="aftercolumn datetime_start">Thu Oct 01 2014</td>
             <td class="aftercolumn datetime_end">Thu Dec 24 2014</td>
+            <td class="aftercolumn">
+                <a class="showextra" href="#" title="Show request form link.">+</a>
+                (<span class="requestscount">0</span>)
+            </td>
             <td class="hideme pooltoken">pooltoken</td>
-            <td class="aftercolumn">(<span class="requestscount">0</span>)</td>
+            <td class="help nostrike actioncell"><div class="actions"><a class="actiondelete" href="#">Delete</a></div></td>
         </tr>
-        <tr>
+        <tr class="hideme extrainfo">
             <td class="help" colspan="4"><a class="requestlink" href="#">Request link</a></td>
         </tr>
     </tbody>
 </table>
 <div id="listactions"><a href="/pools/edit">New...</a></div>
-<div class="help raligntext">(# requests)</div>
+<div class="help raligntext">
+    (# requests)<br>
+    <a id="includeactive" href="?active=false">Include deleted pools.</a>
+</div>
 <form id="actionform" class="hideme" method="post">
     <input type="hidden" name="itemtype" value="pool">
     <input type="hidden" name="returnto" id="returnto">

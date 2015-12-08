@@ -2,6 +2,7 @@
   "name": "tuitionpool",
   "version": "1.0.0",
   "description": "tuition pool",
+  "license": "MIT",
   "main": "index.js",
   "bin": {
     "tuitionpool": "bin/cmd.js"
@@ -38,6 +39,7 @@
     "routes": "^2.1.0",
     "tcp-bind": "^1.2.0",
     "templateking": "^0.1.6",
+    "urlquery-to-object": "^0.1.0",
     "websocket-stream": "^2.0.2",
     "xtend": "^4.0.0"
   },
