@@ -11,7 +11,7 @@ if (argv._[0] === 'init') {
   var createApp = require('../')
   var app = createApp()
   app.setup()
-  return
+  //return
 }
 
 var alloc = require('tcp-bind')
