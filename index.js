@@ -10,29 +10,29 @@ inherits(Server, EventEmitter)
 module.exports = Server
 
 function Server (opts) {
-    if (!(this instanceof Server)) return new Server(opts)
-    if (!opts) opts = {}
-    this.st = ecstatic(path.join(__dirname, 'public'))
+  if (!(this instanceof Server)) return new Server(opts)
+  if (!opts) opts = {}
+  this.st = ecstatic(path.join(__dirname, 'public'))
 }
 
 Server.prototype.handle = function (req, res) {
-    var result, rm = router.match(req.url.split('?')[0]),
-        rmx = xtend(rm, { res:res, state: { url: req.url } })
-    if ( rm && 'POST' === req.method ) {
-        body(req, res, function (err, pvars) {
-            rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
-            result = rm.fn(rmx)
-        })
-    }
-    else if (rm) { result = rm.fn(rmx) }
-    else { this.st(req, res) }
+  var result, rm = router.match(req.url.split('?')[0]),
+  rmx = xtend(rm, { res:res, state: { url: req.url } })
+  if ( rm && 'POST' === req.method ) {
+  body(req, res, function (err, pvars) {
+    rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
+    result = rm.fn(rmx)
+  })
+  }
+  else if (rm) { result = rm.fn(rmx) }
+  else { this.st(req, res) }
 }
 
 Server.prototype.createStream = function () {
-    // websocket feed goes here
+  // websocket feed goes here
 }
 
 Server.prototype.setup = function (cb) {
-    //db.setup(cb)
+  //db.setup(cb)
 }
 
