@@ -17,7 +17,6 @@ function Server (opts) {
 }
 
 Server.prototype.handle = function (req, res) {
-  //var result, rm = router.match(req.url.split('?')[0]),
   var result, rm = router.match(url.parse(req.url).pathname),
     rmx = xtend(rm, { state: { url: req.url } })
   if ( rm && 'POST' === req.method ) {
