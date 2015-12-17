@@ -20,6 +20,7 @@
 }
 .form-style-5 input[type="text"],
 .form-style-5 input[type="email"],
+.form-style-5 input[type="password"],
 .form-style-5 textarea,
 .form-style-5 select {
     font-family: Georgia, "Times New Roman", Times, serif;
