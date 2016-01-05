@@ -73,7 +73,7 @@ DELIMITER ;;
     ON tuitionpool.requests
     FOR EACH ROW
 BEGIN
-    SET NEW.dateonly = LEFT(NEW.datetime, 11);
+    SET NEW.dateonly = LEFT(CURRENT_TIMESTAMP, 11);
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
