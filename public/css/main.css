@@ -58,3 +58,8 @@ a {
 .raligntext {
     text-align: right;
 }
+
+.alert {
+  color: red;
+}
+
