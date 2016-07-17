@@ -10,4 +10,3 @@ exports.serverconn = {
   cert      : '/Users/jay/Documents/web/certs/localhost/48850470-localhost.cert',
   redirhttps: 'https://localhost:4430'
 }
-
