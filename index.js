@@ -17,13 +17,13 @@ function Server (opts) {
 }
 
 Server.prototype.handle = function (req, res) {
-  var result, rm = router.match(url.parse(req.url).pathname),
-    rmx = xtend(rm, { state: { url: req.url } })
+  var result, rm = router.match(url.parse(req.url).pathname)
+  var rmx = xtend(rm, { state: { url: req.url } })
   if ( rm && 'POST' === req.method ) {
-  body(req, res, function (err, pvars) {
-    rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
-    result = rm.fn(req, res, rmx)
-  })
+    body(req, res, function (err, pvars) {
+      rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
+      result = rm.fn(req, res, rmx)
+    })
   }
   else if (rm) { result = rm.fn(req, res, rmx) }
   else { this.st(req, res) }
