@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `pools`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pools` (
   `pooltoken` binary(16) NOT NULL,
+  `usertoken` binary(16) DEFAULT NULL,
   `poolname` text,
   `datetime_start` datetime DEFAULT NULL,
   `datetime_end` datetime DEFAULT NULL,
@@ -33,6 +34,21 @@ CREATE TABLE `pools` (
   UNIQUE KEY `pool_2` (`pooltoken`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER tuitionpool_pools_uuid_ordered_trigger BEFORE INSERT ON pools FOR EACH ROW SET NEW.pooltoken = ordered_uuid(uuid()) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `requests`
@@ -43,6 +59,7 @@ DROP TABLE IF EXISTS `requests`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `requests` (
   `pooltoken` binary(16) DEFAULT NULL,
+  `usertoken` binary(16) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `name` varchar(64) DEFAULT NULL,
   `provisional` tinyint(1) DEFAULT '0',
@@ -68,13 +85,39 @@ CREATE TABLE `requests` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER tuitionpool_requests_date_trigger
-    BEFORE INSERT
-    ON tuitionpool.requests
-    FOR EACH ROW
-BEGIN
-    SET NEW.dateonly = LEFT(CURRENT_TIMESTAMP, 11);
-END */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger tuitionpool_requests_date_trigger BEFORE INSERT ON `requests` FOR EACH ROW BEGIN SET NEW.dateonly = LEFT(CURRENT_TIMESTAMP, 11); END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `usertoken` binary(16) NOT NULL,
+  `username` varchar(64) DEFAULT NULL,
+  `email` varchar(64) DEFAULT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`usertoken`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER tuitionpool_users_uuid_ordered_trigger BEFORE INSERT ON users FOR EACH ROW SET NEW.usertoken = ordered_uuid(uuid()) */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -112,4 +155,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-06 19:27:43
+-- Dump completed on 2016-07-25 14:45:04
