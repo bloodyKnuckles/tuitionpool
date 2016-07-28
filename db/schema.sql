@@ -102,6 +102,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `usertoken` binary(16) NOT NULL,
   `username` varchar(64) DEFAULT NULL,
+  `passhash` char(60) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) DEFAULT '1',
@@ -155,4 +156,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-25 14:45:04
+-- Dump completed on 2016-07-27 20:03:55
