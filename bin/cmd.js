@@ -22,15 +22,6 @@ else { // alternative to return
     var alloc = require('tcp-bind')
     var secfd = alloc(secargv.port)
 
-    var ns = require('node-session')
-    var secret = require('../config.js').secret
-    var session = new ns({
-      secret: secret,
-      'lifetime': 14 * 24 * 60 * 60 * 1000,
-      'secure': true,
-      'encrypt': true
-    })
-
     if (secargv.gid) process.setuid(secargv.gid)
     if (secargv.uid) process.setuid(secargv.uid)
 
@@ -42,9 +33,7 @@ else { // alternative to return
         cert: fs.readFileSync(serverconn.cert)
       },
       function (req, res) {
-        session.startSession(req, res, function () {
-          app.handle(req, res)
-        })
+        app.handle(req, res)
       }
     )
     secserver.listen({ fd: secfd }, function () {

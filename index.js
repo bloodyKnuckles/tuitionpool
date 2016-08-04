@@ -16,17 +16,34 @@ function Server (opts) {
   this.st = ecstatic(path.join(__dirname, 'public'))
 }
 
+var ns = require('node-session')
+var tsession = new ns({
+  secret: require('./config.js').secret,
+  'lifetime': 7 * 24 * 60 * 60 * 1000, // days
+  'secure': true,
+  'encrypt': true
+})
+
 Server.prototype.handle = function (req, res) {
   var result, rm = router.match(url.parse(req.url).pathname)
   var rmx = xtend(rm, { state: { url: req.url } })
-  if ( rm && 'POST' === req.method ) {
-    body(req, res, function (err, pvars) {
-      rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
+
+  if ( rm ) {
+    tsession.startSession(req, res, function () {
+    if ( 'POST' === req.method ) {
+      body(req, res, function (err, pvars) {
+        rmx = xtend(rmx, { params: xtend(rmx.params, pvars) })
+        result = rm.fn(req, res, rmx)
+      })
+    }
+    else {
       result = rm.fn(req, res, rmx)
+    }
     })
   }
-  else if (rm) { result = rm.fn(req, res, rmx) }
-  else { this.st(req, res) }
+  else {
+    this.st(req, res)
+  }
 }
 
 Server.prototype.createStream = function () {
