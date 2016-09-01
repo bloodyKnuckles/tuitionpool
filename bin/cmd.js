@@ -22,6 +22,15 @@ else { // alternative to return
     var alloc = require('tcp-bind')
     var secfd = alloc(secargv.port)
 
+    var ns = require('node-session')        
+    var secret = require('../config.js').secret        
+    var session = new ns({        
+      secret: secret,        
+      'lifetime': 14 * 24 * 60 * 60 * 1000,        
+      'secure': true,        
+      'encrypt': true        
+    })        
+
     if (secargv.gid) process.setuid(secargv.gid)
     if (secargv.uid) process.setuid(secargv.uid)
 
@@ -30,10 +39,14 @@ else { // alternative to return
     var app = createApp()
     var secserver = https.createServer({
         key : fs.readFileSync(serverconn.privkey),
-        cert: fs.readFileSync(serverconn.cert)
+        cert: fs.readFileSync(serverconn.cert),
+        dhparam: fs.readFileSync('/etc/letsencrypt/archive/tuitionpool.org/dh1.pem')
       },
       function (req, res) {
-        app.handle(req, res)
+        res.setHeader('Strict-Transport-Security', 'max-age=31536000000; includeSubDomains')
+        session.startSession(req, res, function () {        
+          app.handle(req, res)        
+        })
       }
     )
     secserver.listen({ fd: secfd }, function () {
@@ -52,8 +65,10 @@ else { // alternative to return
     var fd = alloc(argv.port)
     var http = require('http')
     var server = http.createServer(function (req, res) {
-      res.writeHead(301, { 'Location': serverconn.redirhttps + req.url });
-      res.end();
+      res.writeHead(301, {
+        'Location': serverconn.redirhttps + req.url
+      })
+      res.end()
     })
     server.listen({ fd: fd }, function () {
       console.log('listening on :' + server.address().port)
