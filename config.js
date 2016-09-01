@@ -8,6 +8,7 @@ exports.dbconn = {
 exports.serverconn = {
   privkey   : '/Users/jay/Documents/web/certs/localhost/48850470-localhost.key',
   cert      : '/Users/jay/Documents/web/certs/localhost/48850470-localhost.cert',
+  dhparam   : '/Users/jay/Documents/web/certs/localhost/dhparam.pem',
   redirhttps: 'https://localhost:4430'
 }
 
