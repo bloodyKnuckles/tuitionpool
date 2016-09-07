@@ -25,6 +25,7 @@ else { // alternative to return
     if (secargv.gid) process.setuid(secargv.gid)
     if (secargv.uid) process.setuid(secargv.uid)
 
+
     var https = require('https')
     var createApp = require('../')
     var app = createApp()
@@ -38,9 +39,28 @@ else { // alternative to return
         app.handle(req, res)        
       }
     )
+
     secserver.listen({ fd: secfd }, function () {
       console.log('listening on :' + secserver.address().port)
     })
+
+    /*/
+    var ocsp = require('ocsp')
+    var ocache = new ocsp.Cache()
+
+    secserver.on('OCSPRequest', function(cert, issuer, cb) {
+      ocsp.getOCSPURI(cert, function(err, uri) {
+        if ( err ) { console.log(cert, issuer, err); return cb(err) }
+        if ( uri === null ) { return cb() } // handle not working OCSP server
+        var oreq = ocsp.request.generate(cert, issuer)
+        var options = {
+          url: uri,
+          ocsp: oreq.data
+        }
+        ocache.request(oreq.id, options, cb)
+      })
+    }) //*/
+
 
     var wsock = require('websocket-stream')
     wsock.createServer({ server: secserver }, function (stream) {
