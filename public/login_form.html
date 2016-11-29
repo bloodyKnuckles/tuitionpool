@@ -2,18 +2,21 @@
 
   <h2 id="header">Tuition Pool</h2>
 
-<form name="loginform" method="post" action="/login">
-  <input type="hidden" name="botblock" value="" />
-  <div id="formfields">
-    <fieldset>
-      <legend><span class="number"></span> Access Codes</legend>
-      <input id="username" type="text" name="username" placeholder="Username">
-      <input id="password" type="password" name="password" placeholder="Password">
-    </fieldset>
-  </div>
+  <span id="errmsg" class="warning"></span>
+  <form name="loginform" method="post" action="/login">
+    <input type="hidden" name="botblock" value="" />
+    <div id="formfields">
+      <fieldset>
+        <legend><span class="number"></span> Access Codes</legend>
+        <span id="usernameerr" class="rightmsg warning"></span>
+        <input id="username" type="text" name="username" placeholder="Username">
+        <span id="passworderr" class="rightmsg warning"></span>
+        <input id="password" type="password" name="password" placeholder="Password">
+      </fieldset>
+    </div>
 
-  <input type="submit" value="Log in" />
-</form>
+    <input type="submit" value="Log in" />
+  </form>
 
   <p>New to Tuition Pool? <a href="/signup">Sign up!</a></p>
 </div>

@@ -1,4 +1,37 @@
+h1, h2, h3, h4, h5, h6, p, div {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.btn {
+  font-family: Sans-Serif;
+}
+
 .btn-primary {
   background-color: #1abc9c;
   border-color: #16a085;
+  border-width: 1px 1px 3px;
+  border-radius: 0;
+}
+
+.btn-primary:hover {
+  background-color: #16a085;
+  border-color: #16a085;
+}
+
+.headermarker {
+  background: #1abc9c;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 15px 15px 15px 0px;
 }
