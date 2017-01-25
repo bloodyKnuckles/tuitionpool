@@ -2,29 +2,25 @@
 
   <h2 id="header">Tuition Pool</h2>
 
-<form name="signupform" method="post" action="/signup">
-  <input type="hidden" name="botblock" value="" />
-  <div id="formfields">
-    <fieldset>
-      <legend><span class="number"></span> Personal Information</legend>
-      <input id="name" type="text" name="name" placeholder="Name">
-      <input id="email" type="text" name="email" placeholder="Email">
-    </fieldset>
-    <fieldset>
-      <legend><span class="number"></span> District Information</legend>
-      <input id="districtname" type="text" name="districtname" placeholder="District name">
-      <input id="usd" type="text" name="usd" placeholder="USD">
-      <input id="districtphone" type="text" name="districtphone" placeholder="District phone">
-    </fieldset>
-    <fieldset>
-      <legend><span class="number"></span> Access Codes</legend>
-      <input id="username" type="text" name="username" placeholder="Username">
-      <input id="password" type="text" name="password" placeholder="Password">
-    </fieldset>
-  </div>
+  <span id="errmsg" class="warning">Rest assured, no obligation for signing up!!</span>
+  <form name="loginform" method="post" action="/signup">
+    <input type="hidden" name="botblock" value="" />
+    <div id="formfields">
+      <fieldset>
+        <legend><span class="number"></span> Account Information</legend>
+        <div>
+          <input id="email" type="text" name="email" placeholder="Email">
+          <span id="emailerr" class="rightmsg warning"></span>
+        </div>
+        <div>
+          <input id="districtid" type="text" name="districtid" placeholder="District ID (anything you want, e.g., ks123 or mustangs)">
+          <span id="districtiderr" class="rightmsg warning"></span>
+        </div>
+      </fieldset>
+    </div>
 
-  <input type="submit" value="Sign up" />
-</form>
-
+    <input type="submit" value="Sign up" />
+  </form>
+  <p>Signing up is free. Using <em>Tuition Pool</em> is <u>free</u> during beta testing.</p>
   <p>Already have an account? <a href="/login">Log in!</a></p>
 </div>
