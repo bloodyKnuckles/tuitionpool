@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `requests`;
 CREATE TABLE `requests` (
   `pooltoken` binary(16) DEFAULT NULL,
   `usertoken` binary(16) DEFAULT NULL,
-  `email` varchar(64) DEFAULT NULL,
+  `email` varchar(64) DEFAULT '',
   `name` varchar(64) DEFAULT NULL,
   `provisional` tinyint(1) DEFAULT '0',
   `coursenumber` varchar(32) DEFAULT NULL,
